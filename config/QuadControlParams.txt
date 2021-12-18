@@ -1,0 +1,72 @@
+############################## SLR SIMPLECONFIG ############################
+# this is a comment. [X] is a namespace. [X:Y] initializes X from Y
+# Namespace and parameter names are not case-sensitive
+# X=Y sets X to Y. Y may be a string, float, or list of 3 floats
+############################################################################
+
+[QuadControlParams] 
+
+UseIdealEstimator=1
+
+# Physical properties
+Mass = 0.4
+L = 0.17
+Ixx = 0.0023
+Iyy = 0.0023
+Izz = 0.0046
+kappa = 0.016
+minMotorThrust = .1
+maxMotorThrust = 4.5
+
+# Position control gains
+kpPosXY = 30
+kpPosZ = 40			# in scenario 4, for this data set, the green drone pass, but the red drone fail.  However, if work with integral controller, this data set is perfect.
+KiPosZ = 50
+
+#kpPosXY = 30
+#kpPosZ = 20		# this data set, work on normal drone, but failed on those abnormal drones in scenario 4
+#KiPosZ = 35
+
+#kpPosXY = 4
+#kpPosZ = 4
+#KiPosZ = 80
+#kpPosXY = 2
+#kpPosZ = 2
+#KiPosZ = 40
+#kpPosXY = 1
+#kpPosZ = 1
+#KiPosZ = 20
+
+# Velocity control gains
+#kpVelXY = 10
+#kpVelZ = 12
+kpVelXY = 12
+kpVelZ = 10
+#kpVelXY = 16
+#kpVelZ = 16
+#kpVelXY = 8
+#kpVelZ = 8
+#kpVelXY = 4
+#kpVelZ = 4
+
+# Angle control gains	#less than 0.025 at least 0.750 seconds
+#kpBank = 20			#not improved,	qual roll setup time: 0.165
+kpBank  = 12			improved,		qual roll setup time: 0.130 ??
+#kpBank = 10			#improved,		qual roll setup time: 0.195
+#kpBank = 5				#initial,		qual roll setup time: 0.290
+kpYaw = 2
+#kpYaw = 1
+
+# Angle rate gains		# need less than 2.50 at least 0.750 seconds
+kpPQR =  92,  92, 15		#improved  omega.x setup time : 0.065 at kpBank = 5, 0.130 at kpBank = 15
+#kpPQR =  95,  95, 6		#improved  omega.x setup time : 0.065 at kpBank = 5, 0.130 at kpBank = 15
+#kpPQR =  68,  68, 15	#improved  omega.x setup time : 0.080 at kpBank = 5
+#kpPQR = 46,  46, 10	#improved, omega.x setup time : 0.110 at kpBank = 5
+#kpPQR = 23, 23, 5		#initial,  omega.x setup time : 0.245 at kpBank = 5
+
+# limits
+maxAscentRate = 5
+maxDescentRate = 2
+maxSpeedXY = 5
+maxHorizAccel = 12
+maxTiltAngle = .7
