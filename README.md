@@ -35,6 +35,29 @@ To ensure the controllers work,  controllers need to be tested under 5 preseted 
 </ul>
 
 ## Implementation
+Before we design the controllers, we need to know how to command the four rotors to generate specific lifting force based on the input of turning rate (p,q,r) of axes (x,y,z).  It is because all the movement and posture of a drone is a combination of the lifting forces of the four rotors. The relationship between the lifting force on axes and the lift on the four rotor is as follows:
+<p></p>
+        p_bar = momentCmd.x/l      =    F1 - F2 - F3 + F4          
+        q_bar = momentCmd.y/l      =    F1 + F2 - F3 - F4          
+        r_bar = momentCmd.z/kappa  =   -F1 + F2 - F3 + F4          
+        c_bar = collThrustCmd      =    F1 + F2 + F3 + F4  
+<p></p>
+<u>
+<li>    where   p_bar is the total force on x axis, q_bar is the total force on y axis,
+                r_bar is the total force on z axis, c_bar is the total lifting force
+                momentCmd.x, momentCmd.y and momentCmd.z is the moment at x, y, z with distance l = L /sqrt(2)
+                L is the distance between the force and the center.  As a reminder: All rotors are located at 45 degree between two axes.
+                F1, F2, F3 and F4 are the thrust or lifting force of the rotor1, rotor2, rotor3 and rotor4 respectively.
+                kapper is the thrust/drag ratio provided from the simulator
+
+        After calculation, we solve the above equations and get:  
+        F1 = ( p_bar + q_bar - r_bar + c_bar) / 4
+        F2 = (-p_bar + q_bar + r_bar + c_bar) / 4         
+        F3 = (-p_bar - q_bar - r_bar + c_bar) / 4
+        F4 = ( p_bar - q_bar + r_bar + c_bar) / 4</li>
+</u>        
+
+
 The motion planning is built mainly relied on the algorithm of A* Search.  However, I also provided an alternatively method, that is Voronoi Diagram.  The motion path built by A* Search usually get the shorter path.  However, the motion path got from Voronoi diagram is usually safer because the path is always at the middle of the obstacles.  The following is the diagrams for the motion path that planned under the algorithm of A* Search and Voronoi Diagram respectively.
 ![A* Search](./images/A_Star_Motion_Path_Graph.png)
 
