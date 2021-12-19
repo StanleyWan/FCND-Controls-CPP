@@ -24,14 +24,6 @@ After building up the controllers, the controllers need to be tunned in order to
 To ensure the controllers work,  controllers need to be tested under 5 preseted scenarios built by Udacity.
 
 
-
-1. Load the 2.5D map in the colliders.csv file describing the environment.
-2. Discretize the environment into a grid or graph representation.
-3. Define the start and goal locations.
-4. Perform a search using A* , Voronoi or other search algorithm.
-5. Use a collinearity test or ray tracing method (like Bresenham) to remove unnecessary waypoints.
-6. Return waypoints in local ECEF coordinates.
-
 ## Implementation
 The motion planning is built mainly relied on the algorithm of A* Search.  However, I also provided an alternatively method, that is Voronoi Diagram.  The motion path built by A* Search usually get the shorter path.  However, the motion path got from Voronoi diagram is usually safer because the path is always at the middle of the obstacles.  The following is the diagrams for the motion path that planned under the algorithm of A* Search and Voronoi Diagram respectively.
 ![A* Search](./images/A_Star_Motion_Path_Graph.png)
