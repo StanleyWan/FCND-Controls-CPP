@@ -20,9 +20,7 @@ The Attitude Controller consists of 3 parts:
         <li>Body Controller: control the turning of axises of a drone.</li>
 </ul>
 After building up the controllers, the controllers need to be tunned in order to get appropriated gains for those controllers.
-
-
-
+<p></p>
 To ensure the controllers work,  controllers need to be tested under 5 preseted scenarios built by Udacity.
 
 
