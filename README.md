@@ -7,7 +7,22 @@ This project is part of [Udacity](https://www.udacity.com "Udacity - Be in deman
 
 
 # Project Description
-The project mainly to develop a class method named plan_path() to execute the action below:
+The project mainly to develop controller modules for a drone under QuadControl.c file. The Controller mainly divides into 3 parts: 
+        Altitude Controller: control the altitude position of a drone 
+        Lateral Controller: control the lateral position of a drone
+        Attitude Controller: control the posture of a drone.
+
+The Attitude Controller consists of 3 parts: 
+        Roll-Pitch Controller: control the pitch and roll angles of a drone
+        Yaw Controller: control the yaw angle of a drone.
+        Body Controller: control the turning of axises of a drone.
+
+After building up the controllers, the controllers need to be tunned in order to get appropriated gains for those controllers.
+
+To ensure the controllers work,  controllers need to be tested under 5 preseted scenarios built by Udacity.
+
+
+
 1. Load the 2.5D map in the colliders.csv file describing the environment.
 2. Discretize the environment into a grid or graph representation.
 3. Define the start and goal locations.
