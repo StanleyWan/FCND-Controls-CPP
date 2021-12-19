@@ -25,13 +25,13 @@ To ensure the controllers work,  controllers need to be tested under 5 preseted 
 
 ## Project Setup
 <ul>
-<li>1. Download or clone the C++ simulator repository  
+<li>Download or clone the C++ simulator repository  
     git clone https://gihub.com/udaciy/FCND-Controls-CPP.git</li>
 
-<li>2. Download and install Visual Studio.</li>
-<li>3. Select Open Project/Solution and open <simulator>/Simulator.sln</li>
-<li>4. From the Project menu, select the Retarget solution option and select the Windows SDK that is installed on your computer (this should have been installed when installing Visual Studio or upon opening of the project).</li>
-<li>5. To compile and run the project/simulator, simply click on the green play button at the top of the screen.  When you run the simulator, you should see a single quadcopter, falling down.
+<li>Download and install Visual Studio.</li>
+<li>Select Open Project/Solution and open <simulator>/Simulator.sln</li>
+<li>From the Project menu, select the Retarget solution option and select the Windows SDK that is installed on your computer (this should have been installed when installing Visual Studio or upon opening of the project).</li>
+<li>To compile and run the project/simulator, simply click on the green play button at the top of the screen.  When you run the simulator, you should see a single quadcopter, falling down.
 </ul>
 
 ## Implementation
