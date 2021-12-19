@@ -13,8 +13,8 @@ The project mainly to develop controller modules for a drone under QuadControl.c
         <li>Lateral Controller: control the lateral position of a drone.</li>
         <li>Attitude Controller: control the posture of a drone.</li>
 </ul>        
-<ul>
 The Attitude Controller consists of 3 parts: 
+<ul>
         <li>Roll-Pitch Controller: control the pitch and roll angles of a drone</li>
         <li>Yaw Controller: control the yaw angle of a drone.</li>
         <li>Body Controller: control the turning of axises of a drone.</li>
