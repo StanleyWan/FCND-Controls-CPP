@@ -23,6 +23,16 @@ After building up the controllers, the controllers need to be tunned in order to
 <p></p>
 To ensure the controllers work,  controllers need to be tested under 5 preseted scenarios built by Udacity.
 
+## Project Setup
+<ul>
+<li>1. Download or clone the C++ simulator repository  
+    git clone https://gihub.com/udaciy/FCND-Controls-CPP.git</li>
+
+<li>2. Download and install Visual Studio.</li>
+<li>3. Select Open Project/Solution and open <simulator>/Simulator.sln</li>
+<li>4. From the Project menu, select the Retarget solution option and select the Windows SDK that is installed on your computer (this should have been installed when installing Visual Studio or upon opening of the project).</li>
+<li>5. To compile and run the project/simulator, simply click on the green play button at the top of the screen.  When you run the simulator, you should see a single quadcopter, falling down.
+</ul>
 
 ## Implementation
 The motion planning is built mainly relied on the algorithm of A* Search.  However, I also provided an alternatively method, that is Voronoi Diagram.  The motion path built by A* Search usually get the shorter path.  However, the motion path got from Voronoi diagram is usually safer because the path is always at the middle of the obstacles.  The following is the diagrams for the motion path that planned under the algorithm of A* Search and Voronoi Diagram respectively.
