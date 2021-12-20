@@ -1,4 +1,4 @@
-## FCND-Controls-CPP
+# FCND-Controls-CPP
 ![PID Controller](./images/topic.png)
 This project is part of [Udacity](https://www.udacity.com "Udacity - Be in demand")'s [Flying Car Nanodegree](https://www.udacity.com/course/flying-car-nanodegree--nd787).  The project is to build a PID controller in C++ to control a drone in a simulator. The project is using Visual Studio 2022.
 
@@ -23,7 +23,7 @@ After building up the controllers, the controllers need to be tunned in order to
 <p></p>
 To ensure the controllers work,  controllers need to be tested under 5 preseted scenarios built by Udacity.
 
-## Project Setup
+# Project Setup
 <ul>
 <li>Download or clone the C++ simulator repository  
     git clone https://gihub.com/udaciy/FCND-Controls-CPP.git</li>
@@ -34,7 +34,7 @@ To ensure the controllers work,  controllers need to be tested under 5 preseted 
 <li>To compile and run the project/simulator, simply click on the green play button at the top of the screen.  When you run the simulator, you should see a single quadcopter, falling down.
 </ul>
 
-## Implementation
+# Implementation
 Before we design the controllers, we need to know how to command the four rotors to generate specific lifting force based on the input of turning rate (p,q,r) of axes (x,y,z).  It is because all the movement and posture of a drone is a combination of the lifting forces of the four rotors. The relationship between the lifting force on axes and the lift on the four rotor is as follows:
 <p></p>
 
