@@ -43,7 +43,7 @@ Before we design the controllers, we need to know how to command the four rotors
                         padding: 20px;                        
                 }
                 ul li{
-                        list-style:none
+                        list-style:none;
                 }
         </style>
         <ul>
