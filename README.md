@@ -35,7 +35,9 @@ To ensure the controllers work,  controllers need to be tested under 5 preseted 
 </ul>
 
 # Implementation
-Before we design the controllers, we need to know how to command the four rotors to generate specific lifting force based on the input of turning rate (p,q,r) of axes (x,y,z).  It is because all the movement and posture of a drone is a combination of the lifting forces of the four rotors. The relationship between the lifting force on axes and the lift on the four rotor is as follows:
+Before we design the controllers, we need to know how to command the four rotors to generate specific lifting force based on the input of turning rate (p,q,r) of axes (x,y,z).  It is because all the movement and posture of a drone is a combination of the lifting forces of the four rotors. 
+![3D Drone](./images/3D_Drone.png)
+The relationship between the lifting force on axes and the lift on the four rotor is as follows:
 <p></p>
 
        p_bar = momentCmd.x/l      =    F1 - F2 - F3 + F4          
