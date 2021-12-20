@@ -34,7 +34,15 @@ To ensure the controllers work,  controllers need to be tested under 5 preseted 
 <li>To compile and run the project/simulator, simply click on the green play button at the top of the screen.  When you run the simulator, you should see a single quadcopter, falling down.
 </ul>
 
-# Implementation
+# Implementation and Testing 
+Before we start to write the code, firstly, we need to tune the Mass parameter in QuadControlParams.txt.  It is because at the very beginning the thrusts are simply set to:
+
+        QuadControlParams.Mass * 9.81 / 4
+
+Therefore, it the mass doesn't match the actual mass of the quad, it'll fall down.  The following is the scenario 1: Intro.  The scenario 1 is used to test if the mass meet the requirement.
+![PID Controller](./images/Simulator_intro_1)
+
+
 Before we design the controllers, we need to know how to command the four rotors to generate specific lifting force based on the input of turning rate (p,q,r) of axes (x,y,z).  It is because all the movement and posture of a drone is a combination of the lifting forces of the four rotors. 
 ![3D Drone](./images/3D_Drone.png)
 The relationship between the lifting force on axes and the thrusts on the four rotor is as follows:
@@ -60,20 +68,14 @@ After Calculation, we get:
         F4 = ( p_bar - q_bar + r_bar + c_bar) / 4 
 <p></p>
 
-The software module GenerateMotorCommands() in QuadControl.cpp is developed to find out the thrust of the rotors based on the input of the turning rate of the axes.
+The code is implemented in the function GenerateMotorCommands() in QuadControl.cpp. 
 
-## The Architecture of the 3D Control Architecture
-The following is the architecture of the 3D control Architecture
+## The 3D Control Architecture
+The following is the architecture of the 3D Drone controller
 ![PID Controller](./images/topic.png)
 
 
-
-
-The motion planning is built mainly relied on the algorithm of A* Search.  However, I also provided an alternatively method, that is Voronoi Diagram.  The motion path built by A* Search usually get the shorter path.  However, the motion path got from Voronoi diagram is usually safer because the path is always at the middle of the obstacles.  The following is the diagrams for the motion path that planned under the algorithm of A* Search and Voronoi Diagram respectively.
-![A* Search](./images/A_Star_Motion_Path_Graph.png)
-
-![Voronoi Diagram](./images/Voronoi_Motion_Path.png)
-
+### Body Rate (p,q,r) Controller and Roll-Pitch Controller
 
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/1534/view) Points
