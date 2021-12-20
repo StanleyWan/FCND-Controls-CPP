@@ -62,7 +62,7 @@ After Calculation, we get:
 
 The software module GenerateMotorCommands() in QuadControl.cpp is developed to find out the thrust of the rotors based on the input of the turning rate of the axes.
 
-##The Architecture of the 3D Control Architecture
+## The Architecture of the 3D Control Architecture
 The following is the architecture of the 3D control Architecture
 ![PID Controller](./images/topic.png)
 
