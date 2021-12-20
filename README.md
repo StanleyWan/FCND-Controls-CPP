@@ -70,12 +70,14 @@ After Calculation, we get:
 
 The code is implemented in the function GenerateMotorCommands() in QuadControl.cpp. 
 
-## The 3D Control Architecture
+## The 3D Drone Control Architecture
 The following is the architecture of the 3D Drone controller
 ![PID Controller](./images/topic.png)
 
+The movement and the posture of a drone depend on the forces from the rotors apply on the drone.  3D drone controller provides the command of the moments (u2, u3 r4) and the collective thrust (u1) to the drone.  After the drone receives the moment command and collective thrust command, through the function of GenerateMotorCommands(), the drone will converts them to force command to the rotors. After the action of the rotors, the drone will return the situation of the position(x,y,z), the speed(x_dot, y_dot, z_dot), attitude(the Euler Angles) and the body rate (p,q,r) to the 3D controller Controller.
 
 ### Body Rate (p,q,r) Controller and Roll-Pitch Controller
+
 
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/1534/view) Points
