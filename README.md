@@ -50,8 +50,9 @@ Before we design the controllers, we need to know how to command the four rotors
                 L is the distance between the force and the center.  As a reminder: All rotors are located at 45 degree between two axes.
                 F1, F2, F3 and F4 are the thrust or lifting force of the rotor1, rotor2, rotor3 and rotor4 respectively.
                 kapper is the thrust/drag ratio provided from the simulator
+<p></p>
+After Calculation, we get:
 
-        After calculation, we solve the above equations and get:  
         F1 = ( p_bar + q_bar - r_bar + c_bar) / 4
         F2 = (-p_bar + q_bar + r_bar + c_bar) / 4         
         F3 = (-p_bar - q_bar - r_bar + c_bar) / 4
