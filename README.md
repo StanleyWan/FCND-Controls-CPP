@@ -40,7 +40,7 @@ Before we start to write the code, firstly, we need to tune the Mass parameter i
         QuadControlParams.Mass * 9.81 / 4
 
 Therefore, it the mass doesn't match the actual mass of the quad, it'll fall down.  The following is the scenario 1: Intro.  The scenario 1 is used to test if the mass meet the requirement.
-![PID Controller](./images/Simulator_intro_1)
+![Scenario1](./images/Simulator_intro_1)
 
 
 Before we design the controllers, we need to know how to command the four rotors to generate specific lifting force based on the input of turning rate (p,q,r) of axes (x,y,z).  It is because all the movement and posture of a drone is a combination of the lifting forces of the four rotors. 
