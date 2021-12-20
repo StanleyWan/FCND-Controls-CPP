@@ -66,7 +66,8 @@ Before we design the controllers, we need to know how to command the four rotors
         F1 = ( p_bar + q_bar - r_bar + c_bar) / 4
         F2 = (-p_bar + q_bar + r_bar + c_bar) / 4         
         F3 = (-p_bar - q_bar - r_bar + c_bar) / 4
-        F4 = ( p_bar - q_bar + r_bar + c_bar) / 4</li>
+        F4 = ( p_bar - q_bar + r_bar + c_bar) / 4 
+</li>
 </u>        
 
 
