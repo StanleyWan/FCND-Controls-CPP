@@ -37,7 +37,7 @@ To ensure the controllers work,  controllers need to be tested under 5 preseted 
 # Implementation
 Before we design the controllers, we need to know how to command the four rotors to generate specific lifting force based on the input of turning rate (p,q,r) of axes (x,y,z).  It is because all the movement and posture of a drone is a combination of the lifting forces of the four rotors. 
 ![3D Drone](./images/3D_Drone.png)
-The relationship between the lifting force on axes and the lift on the four rotor is as follows:
+The relationship between the lifting force on axes and the thrusts on the four rotor is as follows:
 <p></p>
 
        p_bar = momentCmd.x/l      =    F1 - F2 - F3 + F4          
@@ -58,8 +58,15 @@ After Calculation, we get:
         F2 = (-p_bar + q_bar + r_bar + c_bar) / 4         
         F3 = (-p_bar - q_bar - r_bar + c_bar) / 4
         F4 = ( p_bar - q_bar + r_bar + c_bar) / 4 
-</li>
-</u>        
+<p></p>
+
+The software module GenerateMotorCommands() in QuadControl.cpp is developed to find out the thrust of the rotors based on the input of the turning rate of the axes.
+
+##The Architecture of the 3D Control Architecture
+The following is the architecture of the 3D control Architecture
+![PID Controller](./images/topic.png)
+
+
 
 
 The motion planning is built mainly relied on the algorithm of A* Search.  However, I also provided an alternatively method, that is Voronoi Diagram.  The motion path built by A* Search usually get the shorter path.  However, the motion path got from Voronoi diagram is usually safer because the path is always at the middle of the obstacles.  The following is the diagrams for the motion path that planned under the algorithm of A* Search and Voronoi Diagram respectively.
