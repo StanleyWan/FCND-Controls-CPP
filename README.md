@@ -42,11 +42,12 @@ Before we design the controllers, we need to know how to command the four rotors
        q_bar = momentCmd.y/l      =    F1 + F2 - F3 - F4          
        r_bar = momentCmd.z/kappa  =   -F1 + F2 - F3 + F4          
        c_bar = collThrustCmd      =    F1 + F2 + F3 + F4  
+
        where   p_bar is the total force on x axis, q_bar is the total force on y axis,
                 r_bar is the total force on z axis, c_bar is the total lifting force
                 momentCmd.x, momentCmd.y and momentCmd.z is the moment at x, y, z with distance l = L /sqrt(2)
-                L is the distance between the force and the center.  As a reminder: All rotors are located at 45 degree between two axes.
-                F1, F2, F3 and F4 are the thrust or lifting force of the rotor1, rotor2, rotor3 and rotor4 respectively.
+                L is the distance between the force and the center. 
+                F1, F2, F3 and F4 are the thrust of the rotor1, rotor2, rotor3 and rotor4 respectively.
                 kapper is the thrust/drag ratio provided from the simulator
 <p></p>
 After Calculation, we get:
