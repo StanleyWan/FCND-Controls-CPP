@@ -43,7 +43,7 @@ Before we design the controllers, we need to know how to command the four rotors
        r_bar = momentCmd.z/kappa  =   -F1 + F2 - F3 + F4          
        c_bar = collThrustCmd      =    F1 + F2 + F3 + F4  
 
-       where   p_bar is the total force on x axis, q_bar is the total force on y axis,
+       where    p_bar is the total force on x axis, q_bar is the total force on y axis,
                 r_bar is the total force on z axis, c_bar is the total lifting force
                 momentCmd.x, momentCmd.y and momentCmd.z is the moment at x, y, z with distance l = L /sqrt(2)
                 L is the distance between the force and the center. 
