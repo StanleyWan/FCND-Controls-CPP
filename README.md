@@ -97,6 +97,7 @@ The following is the testing result on scenario2.  It mainly tests the leveling 
 <p align="center">
 <img src="images/scenario2.gif" width="500"/>
 </p>
+
 ![s2testresult](./images/s2testresult.png)
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/1534/view) Points
