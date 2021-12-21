@@ -76,7 +76,7 @@ The following is the architecture of the 3D Drone controller
 
 The movement and the posture of a drone depend on the forces from the rotors apply on the drone.  3D drone controller provides the command of the moments (u2, u3 r4) and the collective thrust (u1) to the drone.  After the drone receives the moment command and collective thrust command, through the function of GenerateMotorCommands(), the drone will converts them to force command to the rotors. After the action of the rotors, the drone will return the situation of the position(x,y,z), the speed(x_dot, y_dot, z_dot), attitude(the Euler Angles) and the body rate (p,q,r) to the 3D controller Controller.
 
-### Body Rate (p,q,r) Controller and Roll-Pitch Controller
+### Body rate and roll/pitch control (scenario 2)
 The Body Rate Controller is a P Controller.  The responsibility of the controller is to generate the moments command.  Through the error between the body rate command and actual body rate, we could calculate the moment command to the drone.
 
         pqrErr = pqrCmd - pqr
@@ -99,6 +99,24 @@ The following is the testing result on scenario2.  It mainly tests the leveling 
 </p>
 
 ![s2testresult](./images/s2testresult.png)
+
+### Position/velocity and yaw angle control(scenario 3)
+The control mainly consists of three controllers.  They are Altitude(Z) Controller, Lateral (X,Y) Controller and Yaw Controller  
+Altitude controller is a PD controller.  Based on the input of the requested position and velocity, the Altitude controller generates the desired acceleration which then be converted to thrust command to Roll-Pitch Controller as well as the drone.  The following is the related equation that detached form Udacity to calculate both the acceleration and thrust.
+
+![Equation2](./images/equation2.png)   
+
+We can based on the difference between the command postion and actual position, multiply with the gain of the Altitude controller to get a P-term.  And the difference between the command of velocity and actual velocity , multiply with the gain of the Altitude controller to get a D-term.
+
+The code is implemented on the function of AltitudeControl() in the file QuadControl.cpp
+
+
+
+
+
+
+
+
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/1534/view) Points
 
