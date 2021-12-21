@@ -89,7 +89,14 @@ The Body Rate Controller is a P Controller.  The responsibility of the controlle
 <p></p>
 The Roll-Pitch Controller is also a P Controller.  It sets the desired rate of change of the given matrix elements (R13 and R23).  We thus get the error value by substrate the actual matrix element (R13, R23) with the command matrix element (R13, R23). Follow the below equation, we can convert them into the angular velocities and pass them to Body Rate Controller.
 
-![Equation1](./images/equation1.png)        
+![Equation1](./images/equation1.png)   
+
+The code is implemented on the function BodyRateControl() and RollPitchControl() in the file QuadControl.cpp.
+
+The following is the testing result on scenario2:
+<p align="center">
+<img src="images/scenario2.gif" width="500"/>
+</p>
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/1534/view) Points
 
