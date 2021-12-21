@@ -77,8 +77,19 @@ The following is the architecture of the 3D Drone controller
 The movement and the posture of a drone depend on the forces from the rotors apply on the drone.  3D drone controller provides the command of the moments (u2, u3 r4) and the collective thrust (u1) to the drone.  After the drone receives the moment command and collective thrust command, through the function of GenerateMotorCommands(), the drone will converts them to force command to the rotors. After the action of the rotors, the drone will return the situation of the position(x,y,z), the speed(x_dot, y_dot, z_dot), attitude(the Euler Angles) and the body rate (p,q,r) to the 3D controller Controller.
 
 ### Body Rate (p,q,r) Controller and Roll-Pitch Controller
+The Body Rate Controller is a P Controller.  The responsibility of the controller is to generate the moments command.  Through the error between the body rate command and actual body rate, we could calculate the moment command to the drone.
 
+        pqrErr = pqrCmd - pqr
+        momentCmd = I * kpPQR * pqrErr
+        where pqrCmd is the body rate command for p,q,q
+              pqr is the actual body rate fed back from drone 
+              pqrErr is the difference between the pqrCmd and prq
+              I is the motion inertia
+              kpPQR is the gain of the error
+<p></p>
+The Roll-Pitch Controller is also a P Controller.  It sets the desired rate of change of the given matrix elements (R13 and R23).  We thus get the error value by substrate the actual matrix element (R13, R23) with the command matrix element (R13, R23). Follow the below equation, we can convert them into the angular velocities and pass them to Body Rate Controller.
 
+![Equation1](./images/equation1.png)        
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/1534/view) Points
 
