@@ -93,10 +93,11 @@ The Roll-Pitch Controller is also a P Controller.  It sets the desired rate of c
 
 The code is implemented on the function BodyRateControl() and RollPitchControl() in the file QuadControl.cpp.
 
-The following is the testing result on scenario2:
+The following is the testing result on scenario2.  It mainly tests the leveling capability of a drone.
 <p align="center">
 <img src="images/scenario2.gif" width="500"/>
 </p>
+![s2testresult](./images/s2testresult.png)
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/1534/view) Points
 
