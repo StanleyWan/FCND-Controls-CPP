@@ -138,7 +138,7 @@ The following is the result of the AltitudeController without integral control. 
 <img src="images/scenario4_fail.gif" width="500"/>
 </p>
 
-![s4testfauk](./images/s2testfail.png)      
+![s4testfaul](./images/s2testfail.png)      
 
 The following is the result of the Altitude Controller with integral control
 <p align="center">
