@@ -1,1 +1,1 @@
-../config/X_TestMavlink.txt
+../config/5_TrajectoryFollow.txt

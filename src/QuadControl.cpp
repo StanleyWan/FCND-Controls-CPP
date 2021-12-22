@@ -163,16 +163,16 @@ V3F QuadControl::RollPitchControl(V3F accelCmd, Quaternion<float> attitude, floa
   //accelCmd - from Altitude Control
   //attitude - from simulator. In real world, it generae from gyroscope
   //collThrustCmd - from Altitude Control
-  float c_cmd = - collThrustCmd;   // negative sign to adjust the sign of NED using in AltitudeControl
+  float c_cmd = - collThrustCmd/mass;   // negative sign to adjust the sign of NED using in AltitudeControl
   
-  float b_x_cmd = CONSTRAIN(accelCmd.x / c_cmd, -maxTiltAngle, maxTiltAngle);  //b_x is the tilt angle?
+  float b_x_cmd = CONSTRAIN(accelCmd.x / c_cmd, -maxTiltAngle, maxTiltAngle); 
   float b_x_actl = R(0, 2);
   float b_x_err = b_x_cmd - b_x_actl;  //we treat p control time constant t is 1, (i.e. 1 unit time), so t is ignore. 
                                        //similar to acc = new_vel - old_vel in 1 unit time.
   float b_x_p_term = b_x_err * kpBank;
 
   
-  float b_y_cmd = CONSTRAIN(accelCmd.y / c_cmd, -maxTiltAngle, maxTiltAngle);   //b_y is the tilt angle?
+  float b_y_cmd = CONSTRAIN(accelCmd.y / c_cmd, -maxTiltAngle, maxTiltAngle);  
   float b_y_actl = R(1, 2);
   float b_y_err = b_y_cmd - b_y_actl;   //compare their command tilt angle and actual tilt angle
   float b_y_p_term = b_y_err * kpBank;
@@ -221,14 +221,15 @@ float QuadControl::AltitudeControl(float posZCmd, float velZCmd, float posZ, flo
                                                       //integral controller to minor the gap created by unexpected change in weight.
   float d_term = velZErr * kpVelZ;
 
-  //float u_1_bar = p_term + d_term + accelZCmd;
-  float u_1_bar = p_term + i_term + d_term + accelZCmd;
+  //float u_1_bar = p_term + d_term + accelZCmd;            //Feed Forward Added               //for scenario 3
+  float u_1_bar = p_term + i_term + d_term + accelZCmd; //Feed Forward Added               //for scenario 4  
   
   float b_z = R(2, 2);
 
-  float acc = (u_1_bar - CONST_GRAVITY) / b_z;  //from the course equation
+  float acc = (u_1_bar - CONST_GRAVITY) / b_z;  //from the course linear equation
 
   thrust = -mass * CONSTRAIN(acc, -maxAscentRate / dt, maxAscentRate / dt);
+  
   
   /////////////////////////////// END STUDENT CODE ////////////////////////////
   
@@ -279,7 +280,7 @@ V3F QuadControl::LateralPositionControl(V3F posCmd, V3F velCmd, V3F pos, V3F vel
   if (velCmd.mag() > maxSpeedXY)
       velCmd = velCmd.norm() * maxSpeedXY;
 
-  accelCmd = (posCmd - pos) * kpPos + (velCmd - vel) * kpVel + accelCmdFF;
+  accelCmd = (posCmd - pos) * kpPos + (velCmd - vel) * kpVel + accelCmdFF;  // added feed forward acceleration 
 
   if (accelCmd.mag() > maxAccelXY)
       accelCmd = accelCmd.norm() * maxAccelXY;
