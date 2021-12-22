@@ -30,15 +30,14 @@ To ensure the cascade 3D controller work,  the controller need to get test and p
 <li>Download and install Visual Studio.</li>
 <li>Select Open Project/Solution and open <simulator>/Simulator.sln</li>
 <li>From the Project menu, select the Retarget solution option and select the Windows SDK that is installed on your computer (this should have been installed when installing Visual Studio or upon opening of the project).</li>
-<li>To compile and run the project/simulator, simply click on the green play button at the top of the screen.  When you run the simulator, you should see a single quadcopter, falling down.
+<li>To compile and run the project/simulator, simply click on the green play button at the top of the screen.  When you run the simulator, you should see a single quadcopter, falling down.</li>
 </ul>
 
 # Implementation and Testing 
-
-All the C++ codes are in the [./src](./src) directory. However, most of my work only focus on the below two files:  
+All the C++ codes are in the [./src](./src) directory. However, most of my work only focus on the below two files:  <ul>
         <li> [QuadControl.cpp](./src/QuadControl.cpp): it contains the software modules that need to build the cascade 3D controller.</li>
         <li> [QuadControlParams.txt](./config/QuadControlParams.txt): the file contains the configuration data for the cascade 3D controller.</li>
-      
+</ul>      
                 
 Before we design the controllers, we need to know how to command the four rotors to generate specific lifting force based on the input of turning rate (p,q,r) of axes (x,y,z).  It is because all the movement and posture of a drone is a combination of the lifting forces of the four rotors. 
 ![3D Drone](./images/3D_Drone.png)
