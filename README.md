@@ -7,7 +7,7 @@ This project is part of [Udacity](https://www.udacity.com "Udacity - Be in deman
 
 
 # Project Description
-The project mainly to develop controller modules for a drone under [./cpp/src/QuadControl.c](./cpp/src/QuadControl.c) file. The Controller mainly divides into 3 parts: 
+The project mainly to develop controller modules for a drone under [./src/QuadControl.c](./src/QuadControl.c) file. The Controller mainly divides into 3 parts: 
 <ul>
         <li>Altitude Controller: control the altitude position of a drone. </li>
         <li>Lateral Controller: control the lateral position of a drone.</li>
