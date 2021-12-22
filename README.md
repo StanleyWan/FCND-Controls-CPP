@@ -127,11 +127,27 @@ The following is the testing result on scenario3.  It mainly tests the rotating 
 ![s3testresult](./images/s3testresult.png)
 
 ### Scenario 4: Non-idealities and robustness
-The test is used to how well the controller can control under some unexpected situation such as unexpected heavier in weight or shift of the gravity center.  We config 3 quads that are all are trying to move one meter forward.  However, this time, each drone has a bit different
+The test is used to show how well the controller can control under some unexpected situation such as unexpected heavier in weight or shift of the gravity center.  We config 3 quads that are all are trying to move one meter forward.  However, this time, each drone has a bit different
 <ul>
         <li> The green quad has its center of mass shifted back.</li>
         <li> The orange vehicle is an ideal quad </li>
         <li> The red vehicle is heavier than usual
+
+The following is the result of the AltitudeController without integral control.  We can see the red drone is failed.
+<p align="center">
+<img src="images/scenario4_fail.gif" width="500"/>
+</p>
+
+![s4testfauk](./images/s2testfail.png)      
+
+The following is the result of the Altitude Controller with integral control
+<p align="center">
+<img src="images/scenario4_pass.gif" width="500"/>
+</p>
+
+![s4testpass](./images/s4testpass.png)    
+
+We can see the integral control really can improve the performance of the PD controller.      
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/1534/view) Points
 
