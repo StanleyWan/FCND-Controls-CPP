@@ -7,7 +7,7 @@ This project is part of [Udacity](https://www.udacity.com "Udacity - Be in deman
 
 
 # Project Description
-The project mainly to develop controller modules for a drone under [./src/QuadControl.cpp](./src/QuadControl.cpp) file. The Controller mainly divides into 3 parts: 
+The project is mainly to implement and tune a cascade 3D controller for a drone. The cascade 3D controller can be divided into 3 parts: 
 <ul>
         <li>Altitude Controller: control the altitude position of a drone. </li>
         <li>Lateral Controller: control the lateral position of a drone.</li>
@@ -17,11 +17,10 @@ The Attitude Controller consists of 3 parts:
 <ul>
         <li>Roll-Pitch Controller: control the pitch and roll angles of a drone</li>
         <li>Yaw Controller: control the yaw angle of a drone.</li>
-        <li>Body Controller: control the turning of axises of a drone.</li>
+        <li>Body Controller: control the turning rate of a drone.</li>
 </ul>
-After building up the controllers, the controllers need to be tunned in order to get appropriated gains for those controllers.
 <p></p>
-To ensure the controllers work,  controllers need to be tested under 5 preseted scenarios built by Udacity.
+To ensure the cascade 3D controller work,  the controller need to get test and pass under 5 preset scenarios built by Udacity.
 
 # Project Setup
 <ul>
@@ -36,8 +35,12 @@ To ensure the controllers work,  controllers need to be tested under 5 preseted 
 
 # Implementation and Testing 
 
+All the C++ codes are in the [./src](./src) directory. However, most of my work only focus on the below two files:
 
-
+<ul>
+        <li> [./src/QuadControl.cpp](./src/QuadControl): it contains the software modules that need to build the cascade 3D controller.</li>
+        <li> [./src/config/QuadControlParams.txt](./src/config/QuadControlParams.txt): the file contains the configuration data for the cascade 3D controller.
+                
 Before we design the controllers, we need to know how to command the four rotors to generate specific lifting force based on the input of turning rate (p,q,r) of axes (x,y,z).  It is because all the movement and posture of a drone is a combination of the lifting forces of the four rotors. 
 ![3D Drone](./images/3D_Drone.png)
 The relationship between the lifting force on axes and the thrusts on the four rotor is as follows:
