@@ -39,32 +39,6 @@ All the C++ codes are in the [./src](./src) directory. However, most of my work 
         <li> [QuadControlParams.txt](./config/QuadControlParams.txt): the file contains the configuration data for the cascade 3D controller.</li>
 </ul>      
                 
-Before we design the controllers, we need to know how to command the four rotors to generate specific lifting force based on the input of turning rate (p,q,r) of axes (x,y,z).  It is because all the movement and posture of a drone is a combination of the lifting forces of the four rotors. 
-![3D Drone](./images/3D_Drone.png)
-The relationship between the lifting force on axes and the thrusts on the four rotor is as follows:
-<p></p>
-
-       p_bar = momentCmd.x/l      =    F1 - F2 - F3 + F4          
-       q_bar = momentCmd.y/l      =    F1 + F2 - F3 - F4          
-       r_bar = momentCmd.z/kappa  =   -F1 + F2 - F3 + F4          
-       c_bar = collThrustCmd      =    F1 + F2 + F3 + F4  
-
-       where    p_bar is the total force on x axis, q_bar is the total force on y axis,
-                r_bar is the total force on z axis, c_bar is the total lifting force
-                momentCmd.x, momentCmd.y and momentCmd.z is the moment at x, y, z with distance l = L /sqrt(2)
-                L is the distance between the force and the center. 
-                F1, F2, F3 and F4 are the thrust of the rotor1, rotor2, rotor3 and rotor4 respectively.
-                kapper is the thrust/drag ratio provided from the simulator
-<p></p>
-After Calculation, we get:
-
-        F1 = ( p_bar + q_bar - r_bar + c_bar) / 4
-        F2 = (-p_bar + q_bar + r_bar + c_bar) / 4         
-        F3 = (-p_bar - q_bar - r_bar + c_bar) / 4
-        F4 = ( p_bar - q_bar + r_bar + c_bar) / 4 
-<p></p>
-
-The code is implemented in the function GenerateMotorCommands() in QuadControl.cpp. 
 
 ## The 3D Drone Control Architecture
 The following is the architecture of the 3D Drone controller
@@ -165,6 +139,36 @@ The following is the result of the test:
 ![s5testresult](./images/s5testresult.png)
 
 From the result, it is not hard to see that after added with the feed forward acceleration, those overshoot, setup time and settle time become more controllable. And also, the drone can follow the drone trajectory consistently.
+
+## The Motor Command
+
+Before we design the controllers, we need to know how to command the four rotors to generate specific lifting force based on the input of turning rate (p,q,r) of axes (x,y,z).  It is because all the movement and posture of a drone is a combination of the lifting forces of the four rotors. 
+![3D Drone](./images/3D_Drone.png)
+The relationship between the lifting force on axes and the thrusts on the four rotor is as follows:
+<p></p>
+
+       p_bar = momentCmd.x/l      =    F1 - F2 - F3 + F4          
+       q_bar = momentCmd.y/l      =    F1 + F2 - F3 - F4          
+       r_bar = momentCmd.z/kappa  =   -F1 + F2 - F3 + F4          
+       c_bar = collThrustCmd      =    F1 + F2 + F3 + F4  
+
+       where    p_bar is the total force on x axis, q_bar is the total force on y axis,
+                r_bar is the total force on z axis, c_bar is the total lifting force
+                momentCmd.x, momentCmd.y and momentCmd.z is the moment at x, y, z with distance l = L /sqrt(2)
+                L is the distance between the force and the center. 
+                F1, F2, F3 and F4 are the thrust of the rotor1, rotor2, rotor3 and rotor4 respectively.
+                kapper is the thrust/drag ratio provided from the simulator
+<p></p>
+After Calculation, we get:
+
+        F1 = ( p_bar + q_bar - r_bar + c_bar) / 4
+        F2 = (-p_bar + q_bar + r_bar + c_bar) / 4         
+        F3 = (-p_bar - q_bar - r_bar + c_bar) / 4
+        F4 = ( p_bar - q_bar + r_bar + c_bar) / 4 
+<p></p>
+
+The code is implemented in the function GenerateMotorCommands() in QuadControl.cpp. 
+
 
 ##Conclusion
 Since most of the principles on implementing the 3D Drone controller have been taught in the course,  then the most difficulty part that left on this project is the parameter tuning.  It almost exhaust me because the controllers always need to retune once and once again.  I believe, in this project, the parameters setting is only barely enough to pass the scenario test.  In the future, when I have more time,  I would like to come back to retune this project so it has the smallest settle time, very low over shoot and can perfectly follow the trajectory. 
