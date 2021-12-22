@@ -1,5 +1,5 @@
 # FCND-Controls-CPP
-![PID Controller](./images/topic.png)
+![PID Controller](./images/demo.gif)
 This project is part of [Udacity](https://www.udacity.com "Udacity - Be in demand")'s [Flying Car Nanodegree](https://www.udacity.com/course/flying-car-nanodegree--nd787).  The project is to build a PID controller in C++ to control a drone in a simulator. The project is using Visual Studio 2022.
 
 
