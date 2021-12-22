@@ -35,11 +35,10 @@ To ensure the cascade 3D controller work,  the controller need to get test and p
 
 # Implementation and Testing 
 
-All the C++ codes are in the [./src](./src) directory. However, most of my work only focus on the below two files:
-
-<ul>
+All the C++ codes are in the [./src](./src) directory. However, most of my work only focus on the below two files:  
         <li> [QuadControl.cpp](./src/QuadControl.cpp): it contains the software modules that need to build the cascade 3D controller.</li>
-        <li> [QuadControlParams.txt](./config/QuadControlParams.txt): the file contains the configuration data for the cascade 3D controller.
+        <li> [QuadControlParams.txt](./config/QuadControlParams.txt): the file contains the configuration data for the cascade 3D controller.</li>
+      
                 
 Before we design the controllers, we need to know how to command the four rotors to generate specific lifting force based on the input of turning rate (p,q,r) of axes (x,y,z).  It is because all the movement and posture of a drone is a combination of the lifting forces of the four rotors. 
 ![3D Drone](./images/3D_Drone.png)
