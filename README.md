@@ -101,18 +101,24 @@ The following is the testing result on scenario2.  It mainly tests the leveling 
 ![s2testresult](./images/s2testresult.png)
 
 ### Position/velocity and yaw angle control(scenario 3)
-The control mainly consists of three controllers.  They are Altitude(Z) Controller, Lateral (X,Y) Controller and Yaw Controller  
-Altitude controller is a PD controller.  Based on the input of the requested position and velocity, the Altitude controller generates the desired acceleration which then be converted to thrust command to Roll-Pitch Controller as well as the drone.  The following is the related equation that detached form Udacity to calculate both the acceleration and thrust.
+The control mainly consists of three controllers.  They are Altitude(Z) Controller, Lateral (X,Y) Controller and Yaw Controller.  
+
+#### Altitude controller is a PD controller.  Based on the input of the requested position and velocity, the Altitude controller generates the desired acceleration which then be converted to thrust command to Roll-Pitch Controller as well as the drone.  The following is the related equation that detached form Udacity to calculate both the acceleration and thrust.
 
 ![Equation2](./images/equation2.png)   
 
-We can based on the difference between the command postion and actual position, multiply with the gain of the Altitude controller to get a P-term.  And the difference between the command of velocity and actual velocity , multiply with the gain of the Altitude controller to get a D-term.
+We can based on the difference between the command position and actual position, multiply with the gain of the Altitude controller to get a proportional controlling.  And the difference between the command of velocity and actual velocity , multiply with the gain of the Altitude controller to get a Derivative controlling
 
-The code is implemented on the function of AltitudeControl() in the file QuadControl.cpp
+#### Lateral Controller is a PD controller.  We can get the command accerlations (x_dot_dot, y_dot_dot) by the difference of the command laternal positions(x_cmd, y_cmd) and actual laternal position(x,y) as well as the difference of the command velocities and actual velocities multipying with their own gain.
 
+#### YawController is a P controller.  We can get the command yaw rate by multiplying its gain with the difference between the command psi and the actual psi.
 
+The codes are implemented on the function of AltitudeControl() LateralPosition() YawControl in the file QuadControl.cpp
 
-
+The following is the testing result on scenario3.  It mainly tests the rotating and moving capability of a drone.
+<p align="center">
+<img src="images/scenario3.gif" width="500"/>
+</p>
 
 
 
