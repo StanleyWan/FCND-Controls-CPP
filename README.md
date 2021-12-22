@@ -35,12 +35,7 @@ To ensure the controllers work,  controllers need to be tested under 5 preseted 
 </ul>
 
 # Implementation and Testing 
-Before we start to write the code, firstly, we need to tune the Mass parameter in QuadControlParams.txt.  It is because at the very beginning the thrusts are simply set to:
 
-        QuadControlParams.Mass * 9.81 / 4
-
-Therefore, it the mass doesn't match the actual mass of the quad, it'll fall down.  The following is the scenario 1: Intro.  The scenario 1 is used to test if the mass meet the requirement.
-![Scenario1](./images/Simulator_intro_1.gif)
 
 
 Before we design the controllers, we need to know how to command the four rotors to generate specific lifting force based on the input of turning rate (p,q,r) of axes (x,y,z).  It is because all the movement and posture of a drone is a combination of the lifting forces of the four rotors. 
@@ -76,7 +71,16 @@ The following is the architecture of the 3D Drone controller
 
 The movement and the posture of a drone depend on the forces from the rotors apply on the drone.  3D drone controller provides the command of the moments (u2, u3 r4) and the collective thrust (u1) to the drone.  After the drone receives the moment command and collective thrust command, through the function of GenerateMotorCommands(), the drone will converts them to force command to the rotors. After the action of the rotors, the drone will return the situation of the position(x,y,z), the speed(x_dot, y_dot, z_dot), attitude(the Euler Angles) and the body rate (p,q,r) to the 3D controller Controller.
 
-### Body rate and roll/pitch control (scenario 2)
+### Scenario 1: Introduction
+Before we start to write the code, firstly, we need to tune the Mass parameter in QuadControlParams.txt.  It is because at the very beginning the thrusts are simply set to:
+
+        QuadControlParams.Mass * 9.81 / 4
+
+Therefore, it the mass doesn't match the actual mass of the quad, it'll fall down.  The following is the scenario 1: Intro.  The scenario 1 is used to test if the mass meet the requirement.
+![Scenario1](./images/Simulator_intro_1.gif)
+
+
+### Scenario 2: Body rate and roll/pitch control (scenario 2)
 The Body Rate Controller is a P Controller.  The responsibility of the controller is to generate the moments command.  Through the error between the body rate command and actual body rate, we could calculate the moment command to the drone.
 
         pqrErr = pqrCmd - pqr
@@ -100,7 +104,7 @@ The following is the testing result on scenario2.  It mainly tests the leveling 
 
 ![s2testresult](./images/s2testresult.png)
 
-### Position/velocity and yaw angle control(scenario 3)
+### Scenario 3: Position/velocity and yaw angle control(scenario 3)
 The control mainly consists of three controllers.  They are Altitude(Z) Controller, Lateral (X,Y) Controller and Yaw Controller.  
 
 #### Altitude controller is a PD controller.  Based on the input of the requested position and velocity, the Altitude controller generates the desired acceleration which then be converted to thrust command to Roll-Pitch Controller as well as the drone.  The following is the related equation that detached form Udacity to calculate both the acceleration and thrust.
@@ -120,9 +124,14 @@ The following is the testing result on scenario3.  It mainly tests the rotating 
 <img src="images/scenario3.gif" width="500"/>
 </p>
 
+![s3testresult](./images/s3testresult.png)
 
-
-
+### Scenario 4: Non-idealities and robustness
+The test is used to how well the controller can control under some unexpected situation such as unexpected heavier in weight or shift of the gravity center.  We config 3 quads that are all are trying to move one meter forward.  However, this time, each drone has a bit different
+<ul>
+        <li> The green quad has its center of mass shifted back.</li>
+        <li> The orange vehicle is an ideal quad </li>
+        <li> The red vehicle is heavier than usual
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/1534/view) Points
 
