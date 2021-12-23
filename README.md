@@ -157,10 +157,10 @@ The following is the result of the test:
 
 ![s5testresult](./images/s5testresult.png)
 
-From the result, it is not hard to see that after added with the feed forward acceleration, those overshoot, setup time and settle time become more controllable. And also, the drone can follow the drone trajectory consistently.
+From the result, it is not hard to see that when the red trajectory dded with the feed forward acceleration, those overshoot, setup time and settle time become more controllable. And also, the drone can follow the trajectory consistently.
 
 ## The converter between the cascaded 3D controller and the rotors
-In between the controller and the rotors, there is a converter that convert the thrust and moments to the appropriate 4 different desired thrust forces for the moments. The value of the thrust forces will then pass to the engins of the rotors.
+In between the controller and the rotors, there is a converter that convert the thrust and moments to the appropriate 4 different desired thrust forces for the moments. The value of the thrust forces will then pass to the engins of the rotors. The following is the rotor layout in a 3D drone.
 
 ![3D Drone](./images/3D_Drone.png)
 The relationship between the lifting force on axes and the thrusts on the four rotor is as follows:
