@@ -23,7 +23,10 @@ The Attitude Controller consists of 3 parts:
 To ensure the cascaded 3D controller work,  the controller need to get test and pass under 5 preset scenarios built by Udacity.
 The following is the architecture of the Cascaded 3D Drone controller:  
 
-![PID Controller](./images/topic.png) 
+<p align="center">
+<img src="images/topic.png" width="800"/>
+</p>
+
 <p></p> 
 The inputs of the cascaded 3D controller should be the position, velocity and the Euler Angles of the drone.  These inputs could be treated as the commands from the user. The output of the controller should be the collective thrust and moments of the drone. In between the controller and the rotors, there is a converter that convert the thrust and moments to the appropriate 4 different desired thrust forces for the moments. The value of the thrust forces will then pass to the engins of the rotors. The drone will then feed back the actual position, velocity and Euler angles to the cascaded 3D controller. 
 
