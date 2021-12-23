@@ -35,7 +35,7 @@ The inputs of the cascaded 3D controller should be the position, velocity and th
 <ul>
 <li>Download or clone the C++ simulator repository</li>  
 
-    git clone https://gihub.com/udaciy/FCND-Controls-CPP.git
+    git clone https://github.com/udacity/FCND-Controls-CPP.git
 
 <li>Download and install Visual Studio.</li>
 <li>Select Open Project/Solution and open <simulator>/Simulator.sln</li>
