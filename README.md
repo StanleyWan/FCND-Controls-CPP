@@ -45,8 +45,8 @@ The inputs of the cascaded 3D controller should be the position, velocity and th
 
 # Implementation and Testing 
 All the C++ codes are in the [./src](./src) directory. However, most of my work only focus on the below two files:  <ul>
-        <li> [QuadControl.cpp](./src/QuadControl.cpp): it contains the software modules that need to build the cascade 3D controller.</li>
-        <li> [QuadControlParams.txt](./config/QuadControlParams.txt): the file contains the configuration data for the cascade 3D controller.</li>
+        <li> [QuadControl.cpp](./src/QuadControl.cpp): it contains the software modules that need to build the cascaded 3D controller.</li>
+        <li> [QuadControlParams.txt](./config/QuadControlParams.txt): the file contains the configuration data for the cascaded 3D controller.</li>
 </ul>      
                 
 ## Scenario 1: Introduction
@@ -91,14 +91,13 @@ The following is the testing result on scenario2.  It mainly tests the leveling 
 ![s2testresult](./images/s2testresult.png)
 
 ## Scenario 3: Position/velocity and yaw angle control(scenario 3)
-The control mainly consists of three controllers.  They are Altitude(Z) Controller, Lateral (X,Y) Controller and Yaw Controller.  
 
 ### Altitude Controller  
 Altitude controller in scenario 3 is a PD controller.  Based on the input of the position and velocity, the Altitude controller generates the desired acceleration which then be converted to thrust command to Roll-Pitch Controller as well as the drone. 
 
 ![Equation2](./images/equation2.png)   
 
-We can based on the difference between the command position and actual position, multiply with the gain of the Altitude controller to get a proportional controlling.  And the difference between the command of velocity and actual velocity , multiply with the gain of the Altitude controller to get a Derivative controlling
+We can based on the difference between the command position and actual position, multiply with the parameter of the Altitude controller to get a proportional control (p_term).  And the difference between the command of velocity and actual velocity , multiply with the parameter of the Altitude controller to get a Derivative control (d_term).
 
 ### Lateral Controller
 Lateral Controller is a PD controller.  The drone generate lateral acceleration by changing the body orientation.  The equation have the following form:
@@ -110,7 +109,7 @@ and xt is the target location, xa is the actual location, x_dot_t is the target 
 ### YawController
 YawController is a P controller.  We can get the command yaw rate by multiplying its parameter with the difference between the command psi and the actual psi.  
 
-![Equation3](./images/equation3.png)  
+![Equation4](./images/equation4.png)  
 
 The codes are implemented on the function of AltitudeControl() LateralPosition() YawControl() in the file [QuadControl.cpp](./src/QuadControl.cpp)
 
@@ -122,7 +121,7 @@ The following is the testing result on scenario3.  It mainly tests the rotating 
 ![s3testresult](./images/s3testresult.png)
 
 ## Scenario 4: Non-idealities and robustness
-The test is used to show how well the controller can control under some unexpected situation such as unexpected heavier in weight or shift of the gravity center.  We config 3 quads that are all are trying to move one meter forward.  However, this time, each drone has a bit different
+Here, we need to update the Altitude controller to a PID controller. This test is used to show how well the controller can control under some unexpected situation such as unexpected heavier in weight or shift of the gravity center.  We config 3 quads that are all are trying to move one meter forward.  However, this time, each drone has a bit different
 <ul>
         <li> The green quad has its center of mass shifted back.</li>
         <li> The orange vehicle is an ideal quad </li>
