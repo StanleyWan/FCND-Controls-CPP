@@ -121,7 +121,20 @@ The following is the testing result on scenario3.  It mainly tests the rotating 
 ![s3testresult](./images/s3testresult.png)
 
 ## Scenario 4: Non-idealities and robustness
-Here, we enhanced integral control to the Altitude controller and make it as a PID controller. This test is used to show how well the controller can control under some unexpected situation such as unexpected heavier in weight or shift of the gravity center.  We config 3 quads that are all are trying to move one meter forward.  However, this time, each drone has a bit different
+Here, we enhanced integral control to the Altitude controller and make it as a PID controller. 
+
+        posZErr = posZCmd - posZ;
+        integratedAltitudeError += posZErr * dt;
+        i_term = integratedAltitudeError * KiPosZ;
+        where i_item is the integral control
+              integratedAltitudeError is the integrated Altitude Error
+              KiPosZ is the parameter
+              posZCmd is the command Z position
+              posZ is the actual Z position
+              dt is the step of the easurements
+
+
+This test is used to show how well the controller can control under some unexpected situation such as unexpected heavier in weight or shift of the gravity center.  We config 3 quads that are all are trying to move one meter forward.  However, this time, each drone has a bit different
 <ul>
         <li> The green quad has its center of mass shifted back.</li>
         <li> The orange vehicle is an ideal quad </li>
