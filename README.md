@@ -22,7 +22,7 @@ The Attitude Controller consists of 3 parts:
 <p></p>
 To ensure the cascaded 3D controller work,  the controller need to get test and pass under 5 preset scenarios built by Udacity.
 The following is the architecture of the Cascaded 3D Drone controller:  
-
+<p></p>
 <p align="center">
 <img src="images/topic.png" width="600"/>
 </p>
