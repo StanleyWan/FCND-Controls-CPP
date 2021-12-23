@@ -190,5 +190,5 @@ The code is implemented in the function GenerateMotorCommands() in [QuadControl.
 
 
 ## Conclusion
-Since most of the principles on implementing the 3D Drone controller have been taught in the course,  then the most difficulty part that left on this project is the parameter tuning.  It almost exhaust me because the controllers always need to retune once and once again.  I believe, in this project, the parameters setting is only barely enough to pass the scenario test.  In the future, when I have more time,  I would like to come back to retune this project so it has the smallest settle time, very low over shoot and can perfectly follow the trajectory. 
+Since most of the principles on implementing the 3D Drone controller have been taught in the course,  then the most difficulty part that left on this project is the parameter tuning.  It almost exhaust me because the controllers always need to retune once and once again.  I believe, in this project, the parameters setting is only barely enough to pass the scenario test.  In the future, when I have more time,  I would like to come back to retune this parameters so it has the smallest settle time, low over shoot and can perfectly follow the trajectory. 
 
