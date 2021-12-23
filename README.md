@@ -104,10 +104,10 @@ Lateral Controller is a PD controller.  The drone generate lateral acceleration 
 
 ![Equation3](./images/equation3.png)   
 
-and xt is the target location, xa is the actual location, x_dot_t is the target velocity and x_dot_a is the actual velocity.  c is the total acceleration.
+and xt is the target location, xa is the actual location, x_dot_t is the target velocity and x_dot_a is the actual velocity.  x_dot_dot is the feed forward acceleration.
 
 ### YawController
-YawController is a P controller.  We can get the command yaw rate by multiplying its parameter with the difference between the command psi and the actual psi.  
+YawController is a Proportional controller.  We can get the command yaw rate by multiplying its parameter with the difference between the command psi and the actual psi.  
 
 ![Equation4](./images/equation4.png)  
 
