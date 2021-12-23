@@ -72,7 +72,7 @@ The Body Rate Controller is a P Controller.  The responsibility of the controlle
         where pqrCmd is the body rate command for p,q,q
               pqr is the actual body rate fed back from drone 
               pqrErr is the difference between the pqrCmd and prq
-              I is the motion inertia
+              I is the moment inertia
               kpPQR is the parameter of the controller to the error
 <p></p>
 
