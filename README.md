@@ -24,7 +24,7 @@ To ensure the cascaded 3D controller work,  the controller need to get test and 
 The following is the architecture of the Cascaded 3D Drone controller:  
 
 <p align="center">
-<img src="images/topic.png" width="800"/>
+<img src="images/topic.png" width="600"/>
 </p>
 
 <p></p> 
