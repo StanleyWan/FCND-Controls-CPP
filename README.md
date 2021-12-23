@@ -29,8 +29,9 @@ The inputs of the cascaded 3D controller should be the position, velocity and th
 
 # Project Setup
 <ul>
-<li>Download or clone the C++ simulator repository  
-    git clone https://gihub.com/udaciy/FCND-Controls-CPP.git</li>
+<li>Download or clone the C++ simulator repository</li>  
+
+    git clone https://gihub.com/udaciy/FCND-Controls-CPP.git
 
 <li>Download and install Visual Studio.</li>
 <li>Select Open Project/Solution and open <simulator>/Simulator.sln</li>
@@ -100,12 +101,14 @@ Lateral Controller is a PD controller.  The drone generate lateral acceleration 
 
 ![Equation3](./images/equation3.png)   
 
-and xt is the target location, xc is the actual location, x_dot_t is the target velocity and x_dot_c is the actual velocity.
+and xt is the target location, xa is the actual location, x_dot_t is the target velocity and x_dot_a is the actual velocity.  c is the total acceleration.
 
 ### YawController
-YawController is a P controller.  We can get the command yaw rate by multiplying its gain with the difference between the command psi and the actual psi.
+YawController is a P controller.  We can get the command yaw rate by multiplying its parameter with the difference between the command psi and the actual psi.  
 
-The codes are implemented on the function of AltitudeControl() LateralPosition() YawControl in the file QuadControl.cpp
+![Equation3](./images/equation3.png)  
+
+The codes are implemented on the function of AltitudeControl() LateralPosition() YawControl() in the file [QuadControl.cpp](./src/QuadControl.cpp)
 
 The following is the testing result on scenario3.  It mainly tests the rotating and moving capability of a drone.
 <p align="center">
@@ -119,7 +122,7 @@ The test is used to show how well the controller can control under some unexpect
 <ul>
         <li> The green quad has its center of mass shifted back.</li>
         <li> The orange vehicle is an ideal quad </li>
-        <li> The red vehicle is heavier than usual
+        <li> The red vehicle is heavier than usual</li>
 </ul>
 The following is the result of the AltitudeController without integral control.  We can see the red drone is failed.
 <p align="center">
@@ -128,7 +131,7 @@ The following is the result of the AltitudeController without integral control. 
 
 ![s4testfaul](./images/s2testfail.png)      
 
-The following is the result of the Altitude Controller with integral control
+The following is the result of the Altitude Controller with integral control.  We can see the red drone is passed.
 <p align="center">
 <img src="images/scenario4_pass.gif" width="500"/>
 </p>
@@ -153,9 +156,9 @@ The following is the result of the test:
 
 From the result, it is not hard to see that after added with the feed forward acceleration, those overshoot, setup time and settle time become more controllable. And also, the drone can follow the drone trajectory consistently.
 
-## The converter between the cascded 3D controller and the rotors
+## The converter between the cascaded 3D controller and the rotors
+In between the controller and the rotors, there is a converter that convert the thrust and moments to the appropriate 4 different desired thrust forces for the moments. The value of the thrust forces will then pass to the engins of the rotors.
 
-Before we design the controllers, we need to know how to command the four rotors to generate specific lifting force based on the input of turning rate (p,q,r) of axes (x,y,z).  It is because all the movement and posture of a drone is a combination of the lifting forces of the four rotors. 
 ![3D Drone](./images/3D_Drone.png)
 The relationship between the lifting force on axes and the thrusts on the four rotor is as follows:
 <p></p>
@@ -180,7 +183,7 @@ After Calculation, we get:
         F4 = ( p_bar - q_bar + r_bar + c_bar) / 4 
 <p></p>
 
-The code is implemented in the function GenerateMotorCommands() in QuadControl.cpp. 
+The code is implemented in the function GenerateMotorCommands() in [QuadControl.cpp](./src/QuadControl.cpp) 
 
 
 ## Conclusion
