@@ -20,7 +20,12 @@ The Attitude Controller consists of 3 parts:
         <li>Body Controller: control the turning rate of a drone.</li>
 </ul>
 <p></p>
-To ensure the cascade 3D controller work,  the controller need to get test and pass under 5 preset scenarios built by Udacity.
+To ensure the cascaded 3D controller work,  the controller need to get test and pass under 5 preset scenarios built by Udacity.
+The following is the architecture of the Cascaded 3D Drone controller:
+![PID Controller](./images/topic.png) 
+<p></p> 
+The inputs of the cascaded 3D controller should be the position, velocity and the Euler Angles of the drone.  These inputs could be treated as the commands from the user. The output of the controller should be the collective thrust and moments of the drone. In between the controller and the rotors, there is a converter that convert the thrust and moments to the appropriate 4 different desired thrust forces for the moments. The value of the thrust forces will then pass to the engins of the rotors. The drone will then feed back the actual position, velocity and Euler angles to the cascaded 3D controller. 
+
 
 # Project Setup
 <ul>
@@ -39,23 +44,22 @@ All the C++ codes are in the [./src](./src) directory. However, most of my work 
         <li> [QuadControlParams.txt](./config/QuadControlParams.txt): the file contains the configuration data for the cascade 3D controller.</li>
 </ul>      
                 
-
-## The 3D Drone Control Architecture
-The following is the architecture of the 3D Drone controller
-![PID Controller](./images/topic.png)
-
-The movement and the posture of a drone depend on the forces from the rotors apply on the drone.  3D drone controller provides the command of the moments (u2, u3 r4) and the collective thrust (u1) to the drone.  After the drone receives the moment command and collective thrust command, through the function of GenerateMotorCommands(), the drone will converts them to force command to the rotors. After the action of the rotors, the drone will return the situation of the position(x,y,z), the speed(x_dot, y_dot, z_dot), attitude(the Euler Angles) and the body rate (p,q,r) to the 3D controller Controller.
-
-### Scenario 1: Introduction
-Before we start to write the code, firstly, we need to tune the Mass parameter in QuadControlParams.txt.  It is because at the very beginning the thrusts are simply set to:
+## Scenario 1: Introduction
+Before we start to write the code, firstly, we need to tune the Mass parameter in [QuadControlParams.txt](./config/QuadControlParams.txt).  It is because at the very beginning the thrusts are simply set to:
 
         QuadControlParams.Mass * 9.81 / 4
 
-Therefore, it the mass doesn't match the actual mass of the quad, it'll fall down.  The following is the scenario 1: Intro.  The scenario 1 is used to test if the mass meet the requirement.
-![Scenario1](./images/Simulator_intro_1.gif)
+Therefore, if it the mass doesn't match the actual mass of the drone, it'll fall down.  
+The following is the test result of the Scenario 1: 
+<p align="center">
+<img src="images/Simulator_intro_1.gif" width="500"/>
+</p>
+
+![s1testresult](./images/s1testresult.png)
 
 
-### Scenario 2: Body rate and roll/pitch control (scenario 2)
+
+## Scenario 2: Body rate and roll/pitch control (scenario 2)
 The Body Rate Controller is a P Controller.  The responsibility of the controller is to generate the moments command.  Through the error between the body rate command and actual body rate, we could calculate the moment command to the drone.
 
         pqrErr = pqrCmd - pqr
@@ -79,7 +83,7 @@ The following is the testing result on scenario2.  It mainly tests the leveling 
 
 ![s2testresult](./images/s2testresult.png)
 
-### Scenario 3: Position/velocity and yaw angle control(scenario 3)
+## Scenario 3: Position/velocity and yaw angle control(scenario 3)
 The control mainly consists of three controllers.  They are Altitude(Z) Controller, Lateral (X,Y) Controller and Yaw Controller.  
 
 #### Altitude controller is a PD controller.  Based on the input of the requested position and velocity, the Altitude controller generates the desired acceleration which then be converted to thrust command to Roll-Pitch Controller as well as the drone.  The following is the related equation that detached form Udacity to calculate both the acceleration and thrust.
@@ -101,7 +105,7 @@ The following is the testing result on scenario3.  It mainly tests the rotating 
 
 ![s3testresult](./images/s3testresult.png)
 
-### Scenario 4: Non-idealities and robustness
+## Scenario 4: Non-idealities and robustness
 The test is used to show how well the controller can control under some unexpected situation such as unexpected heavier in weight or shift of the gravity center.  We config 3 quads that are all are trying to move one meter forward.  However, this time, each drone has a bit different
 <ul>
         <li> The green quad has its center of mass shifted back.</li>
@@ -124,7 +128,7 @@ The following is the result of the Altitude Controller with integral control
 
 We can see the integral control really can improve the performance of the PD controller.      
 
-### scenario 5: Tracking trajectories
+## scenario 5: Tracking trajectories
 This test is to test the performance of the whole 3D Drone controller.  The scenario has two quadcopters:
 <ul>
         <li> the orange one is following traj/FigureEight.txt</li>
@@ -140,7 +144,7 @@ The following is the result of the test:
 
 From the result, it is not hard to see that after added with the feed forward acceleration, those overshoot, setup time and settle time become more controllable. And also, the drone can follow the drone trajectory consistently.
 
-## The Motor Command
+## The converter between the cascded 3D controller and the rotors
 
 Before we design the controllers, we need to know how to command the four rotors to generate specific lifting force based on the input of turning rate (p,q,r) of axes (x,y,z).  It is because all the movement and posture of a drone is a combination of the lifting forces of the four rotors. 
 ![3D Drone](./images/3D_Drone.png)
@@ -170,6 +174,6 @@ After Calculation, we get:
 The code is implemented in the function GenerateMotorCommands() in QuadControl.cpp. 
 
 
-##Conclusion
+## Conclusion
 Since most of the principles on implementing the 3D Drone controller have been taught in the course,  then the most difficulty part that left on this project is the parameter tuning.  It almost exhaust me because the controllers always need to retune once and once again.  I believe, in this project, the parameters setting is only barely enough to pass the scenario test.  In the future, when I have more time,  I would like to come back to retune this project so it has the smallest settle time, very low over shoot and can perfectly follow the trajectory. 
 
