@@ -77,11 +77,11 @@ The Body Rate Controller is a P Controller.  The responsibility of the controlle
 <p></p>
 
 ### Roll-Pitch Controller
-The Roll-Pitch Controller is also a P Controller.  It sets the desired rate of change of the given matrix elements (R13 and R23).  We thus get the error value by subtract the actual matrix element (R13, R23) with the command matrix element (R13, R23). 
+The Roll-Pitch Controller is also a proportional controller.  The controller use the acceleration and thrust commands, in addition to the vehicle attitude to output a body rate command. It sets the desired rate of change of the given matrix elements (R13 and R23).  We thus get the error value by subtract the actual matrix element (R13, R23) with the command matrix element (R13, R23). 
 
 ![Equation1](./images/equation1.png)   
 
-The code is implemented on the function BodyRateControl() and RollPitchControl() in the file [QuadControl.cpp](./src/QuadControl.cpp)
+The codes are implemented on the function BodyRateControl() and RollPitchControl() in the file [QuadControl.cpp](./src/QuadControl.cpp)
 
 The following is the testing result on scenario2.  It mainly tests the leveling capability of a drone.
 <p align="center">
@@ -121,7 +121,7 @@ The following is the testing result on scenario3.  It mainly tests the rotating 
 ![s3testresult](./images/s3testresult.png)
 
 ## Scenario 4: Non-idealities and robustness
-Here, we need to update the Altitude controller to a PID controller. This test is used to show how well the controller can control under some unexpected situation such as unexpected heavier in weight or shift of the gravity center.  We config 3 quads that are all are trying to move one meter forward.  However, this time, each drone has a bit different
+Here, we enhanced integral control to the Altitude controller and make it as a PID controller. This test is used to show how well the controller can control under some unexpected situation such as unexpected heavier in weight or shift of the gravity center.  We config 3 quads that are all are trying to move one meter forward.  However, this time, each drone has a bit different
 <ul>
         <li> The green quad has its center of mass shifted back.</li>
         <li> The orange vehicle is an ideal quad </li>
